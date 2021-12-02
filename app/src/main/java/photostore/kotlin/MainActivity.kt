@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //creating car classes
         var AstonMartin = Car("Aston Martin Victor Static",3000000.00f, R.drawable.aston_martin_victor_static)
         var BugattiChrion = Car("Bugatti Chiron Pur Sport",3600000.00f, R.drawable.bugatti_chiron_pur_sport)
         var MercedesAmg = Car("Mercedes AMG Project One",2700000.00f, R.drawable.mercedes_amg_project_one)
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         var Mclaren = Car("McLaren Elva",1700000.00f, R.drawable.mclaren_elva)
         var Gwagon = Car("Mercedes-Maybach G650 Landaulet",1800000.00f, R.drawable.gwagon)
 
+        //inserting car drawable images into image array
         image = findViewById(R.id.image)
         imageArray.add(AstonMartin.carSrc)
         imageArray.add(BugattiChrion.carSrc)
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         imageArray.add(Mclaren.carSrc)
         imageArray.add(Gwagon.carSrc)
 
+        //inserting car listing information into text array
         text = findViewById(R.id.imagetext)
         textArray.add("The ${AstonMartin.carName}\n priced at $${AstonMartin.carPrice}")
         textArray.add("The ${BugattiChrion.carName}\n priced at $${BugattiChrion.carPrice}")
@@ -59,9 +62,10 @@ class MainActivity : AppCompatActivity() {
         image!!.setImageResource(imageArray[currentIndex])
         text!!.setText(textArray[currentIndex])
 
-        var buy: Button = findViewById(R.id.buy)
-        var next: Button = findViewById(R.id.next)
-        var previous: Button = findViewById(R.id.previous)
+        //buttons to manipulate page
+        var buy: Button = findViewById(R.id.buy) //takes you to next page
+        var next: Button = findViewById(R.id.next) //to next car
+        var previous: Button = findViewById(R.id.previous) //to previous car
 
         next.setOnClickListener(){
             nextImage()
@@ -71,6 +75,7 @@ class MainActivity : AppCompatActivity() {
             previousImage()
         }
 
+        //initiating of the next page to show the car that was bought
         val buypage = Intent(this, PhotoActivity::class.java)
         buy.setOnClickListener() {
             //intent.putIntegerArrayListExtra("key", value)
@@ -82,6 +87,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //gets next image from image to text array
     private fun nextImage() {
         currentIndex++
 
@@ -96,6 +102,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //gets previous image and text from image array
     private fun previousImage() {
         currentIndex--
 
@@ -111,10 +118,11 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+//car class (Photo Product)
 class Car{
     var carName: String
     var carPrice: Float
-    var carSrc: Int
+    var carSrc: Int //drawable
 
 
     constructor(Name: String, Price: Float, Src: Int){
